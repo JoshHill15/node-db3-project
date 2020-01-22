@@ -48,9 +48,9 @@ router.get('/:id/steps', (req, res) => {
 
 router.post('/', (req, res) => {
   const schemeData = req.body;
-
   Schemes.add(schemeData)
   .then(scheme => {
+    console.log("scheme",scheme)
     res.status(201).json(scheme);
   })
   .catch (err => {
@@ -65,8 +65,11 @@ router.post('/:id/steps', (req, res) => {
   Schemes.findById(id)
   .then(scheme => {
     if (scheme) {
+      console.log("scheme", scheme)
+      console.log("id",id)
       Schemes.addStep(stepData, id)
       .then(step => {
+        console.log("step", step)
         res.status(201).json(step);
       })
     } else {
